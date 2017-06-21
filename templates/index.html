@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }} - XDMod </title>
+  </head>
+  <body>
+    <h1> Hello! Search for a job.</h1>
+    <p> Please select a resource and type a job id. </p>
+    <form action="/Home_Page" method="POST">
+      <select name="cluster">
+        <option value="chemistry">Chemistry</option>
+        <option value="industry">Industry</option>
+        <option value="mae">Mae</option>
+        <option value="physics">Physics</option>
+        <option value="ub-hpc">UB-HPC</option>
+      </select>
+      Job id:
+      <input type="text" name="jobid" maxlength="7">
+      <input type="submit" value="Submit">
+    </form>
+    <p>{{ user.error }}</p>
+  </body>
+</html>
