@@ -1,10 +1,10 @@
 from setuptools import setup
 
 setup(
-    name='JobSearch',
-    version='1.0',
+    name='jobsearch',
     packages=['jobsearch'],
     include_package_data=True,
-    zip_safe=False,
-    install_requires=['Flask']
+    install_requires=[
+        'flask',
+    ]
 )
