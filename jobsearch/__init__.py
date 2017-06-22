@@ -4,14 +4,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    return 'Welcome!'
-
-@app.route('/Home_Page')
-def index():
     user = {'error': ''}
     return render_template('index.html', title='Home', user=user)
 
-@app.route('/Home_Page', methods=['POST'])
+@app.route('/', methods=['POST'])
 def input():
     cluster = request.form['cluster']
     job = request.form['jobid']
