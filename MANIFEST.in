@@ -1,1 +1,2 @@
 graft jobsearch/templates
+include jobsearch/statics/config.json
