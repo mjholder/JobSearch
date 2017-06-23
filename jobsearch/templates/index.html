@@ -6,18 +6,46 @@
   <body>
     <h1> Search for details on a CCR job.</h1>
     <p> Please select a resource and type a job id. </p>
-    <form action="/" method="POST">
-      <select name="cluster">
+    <form action="/search" method="GET" target="_blank">
+      <select name="cluster" id="cluster">
         <option value="ub-hpc">UB-HPC</option>
         <option value="chemistry">Chemistry</option>
         <option value="industry">Industry</option>
         <option value="mae">Mae</option>
         <option value="physics">Physics</option>
       </select>
-      Job id:
-      <input type="text" name="jobid" maxlength="7">
-      <input type="submit" value="Submit">
+      Job id: 
+      <script>
+        function isNumberKey(evt){
+          var charCode = event.keyCode
+          var out = false
+          if ((charCode >= 48 && charCode <= 57)) {
+            out = true;
+          }
+          if (document.getElementById("jobid").value.length == 7) {
+            document.getElementById("search").disabled = false
+          } else {
+            document.getElementById("search").disabled = true
+          }
+          return out;
+        }
+      </script>
+      <script>
+        function add() {
+          var list = document.getElementById("history");
+          var resource = document.getElementById("cluster").value;
+          var job = document.getElementById("jobid").value;
+          var passed = true
+          if(document.getElementById(resource + "" + job) == null) {
+            list.innerHTML = list.innerHTML + "<li id='" + resource + job + "'><a href='" + "http://pcp2.ccr.buffalo.edu:8080/supremm_rest/loader.html?resource_id=" + resource + "&jobid=" + job + "' target='_blank'>" + resource + ": " + job + "</li>";
+          }
+        }
+      </script>
+      <input name="jobid" id="jobid" type="text" onkeyup="return isNumberKey(event)" maxlength="7"/>
+      <input type="submit" id="search" onclick="return add()" disabled="true"></input><br>
+      <p>History</p>
+      <ul id="history">
+      </ul>
     </form>
-    <p>{{ user.error }}</p>
   </body>
 </html>

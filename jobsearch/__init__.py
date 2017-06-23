@@ -4,18 +4,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def main():
-    user = {'error': ''}
-    return render_template('index.html', title='Home', user=user)
+    return render_template('index.html', title='Home')
 
-@app.route('/', methods=['POST'])
+@app.route('/search', methods=['GET'])
 def input():
-    cluster = request.form['cluster']
-    job = request.form['jobid']
+    cluster = request.args['cluster']
+    job = request.args['jobid']
     url = "http://pcp2.ccr.buffalo.edu:8080/supremm_rest/loader.html?resource_id=" + cluster + "&jobid=" + job
-    if job.isdigit():
-        print("Redirecting to " + url)
-        return redirect(url, code = 302)
-    else:
-        user = {'error': "Error: Job id's only contain integers"}
-        return render_template('index.html', title='Home', user=user)
-
+    print url
+    return redirect(302, url)
