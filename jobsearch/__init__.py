@@ -19,4 +19,4 @@ def input():
     job = request.args['jobid']
     url = "http://" + hostname + "/supremm_rest/loader.html?resource_id=" + cluster + "&jobid=" + job
     print url
-    return redirect(302, url)
+    return redirect(url)
