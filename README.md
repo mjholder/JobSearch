@@ -15,5 +15,5 @@ Or install with an rpm package:
 3. $ yum install dist/jobsearch-x.x.x-1.xxxx.rpm
 
 To run:
-1. $ FLASK_APP=jobsearch
+1. $ export FLASK_APP=jobsearch
 2. $ flask run
